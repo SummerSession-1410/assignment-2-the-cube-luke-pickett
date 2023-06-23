@@ -10,6 +10,40 @@ public class Cube {
 			{"6", "7", "8"}
 	};
 
+	static String[][][] cube = {
+			{
+					{"0r", "1r", "2r"},
+					{"3r", "4r", "5r"},
+					{"6r", "7r", "8r"}
+			},
+			{
+					{"0b", "1b", "2b"},
+					{"3b", "4b", "5b"},
+					{"6b", "7b", "8b"}
+			},
+			{
+					{"0y", "1y", "2y"},
+					{"3y", "4y", "5y"},
+					{"6y", "7y", "8y"}
+			},
+			{
+					{"0g", "1g", "2g"},
+					{"3g", "4g", "5g"},
+					{"6g", "7g", "8g"}
+			},
+			{
+					{"0w", "1w", "2w"},
+					{"3w", "4w", "5w"},
+					{"6w", "7w", "8w"}
+			},
+			{
+					{"0o", "1o", "2o"},
+					{"3o", "4o", "5o"},
+					{"6o", "7o", "8o"}
+			}
+	};
+
+
 	static void readFace(String[][] face)
 	{
 		System.out.println();
@@ -48,7 +82,6 @@ public class Cube {
 			face[2] = tempRow;
 		}
 		else {
-			System.out.println("Clockwise");
 			String[] tempRow = new String[3];
 			for (int k=0; k<3; k++) {
 				tempRow[k] = face[0][k];
@@ -69,9 +102,11 @@ public class Cube {
 		}
 	}
 	public static void main(final String[] args) {
-		readFace(face);
-		rotateFace(face, true);
-		readFace(face);
+		readFace(cube[0]);
+		rotateFace(cube[0], true);
+		readFace(cube[0]);
+		rotateFace(cube[0], false);
+		readFace(cube[0]);
 	}
 
 }
