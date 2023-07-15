@@ -206,24 +206,24 @@ public class Cube {
 				cube[eFace.current_face][8] = copy[eFace.current_face][2];
 
 				// Edge 1
-				cube[eFace.edge1[0]][eFace.edge1[1]] = copy[eFace.edge4[0]][eFace.edge4[1]];
-				cube[eFace.edge1[0]][eFace.edge1[2]] = copy[eFace.edge4[0]][eFace.edge4[2]];
-				cube[eFace.edge1[0]][eFace.edge1[3]] = copy[eFace.edge4[0]][eFace.edge4[3]];
+				cube[eFace.edge1[0]][eFace.edge1[1]] = copy[eFace.edge2[0]][eFace.edge2[1]];
+				cube[eFace.edge1[0]][eFace.edge1[2]] = copy[eFace.edge2[0]][eFace.edge2[2]];
+				cube[eFace.edge1[0]][eFace.edge1[3]] = copy[eFace.edge2[0]][eFace.edge2[3]];
 
 				// Edge 2
-				cube[eFace.edge2[0]][eFace.edge2[1]] = copy[eFace.edge1[0]][eFace.edge1[1]];
-				cube[eFace.edge2[0]][eFace.edge2[2]] = copy[eFace.edge1[0]][eFace.edge1[2]];
-				cube[eFace.edge2[0]][eFace.edge2[3]] = copy[eFace.edge1[0]][eFace.edge1[3]];
+				cube[eFace.edge2[0]][eFace.edge2[1]] = copy[eFace.edge3[0]][eFace.edge3[1]];
+				cube[eFace.edge2[0]][eFace.edge2[2]] = copy[eFace.edge3[0]][eFace.edge3[2]];
+				cube[eFace.edge2[0]][eFace.edge2[3]] = copy[eFace.edge3[0]][eFace.edge3[3]];
 
 				// Edge 3
-				cube[eFace.edge3[0]][eFace.edge3[1]] = copy[eFace.edge2[0]][eFace.edge2[1]];
-				cube[eFace.edge3[0]][eFace.edge3[2]] = copy[eFace.edge2[0]][eFace.edge2[2]];
-				cube[eFace.edge3[0]][eFace.edge3[3]] = copy[eFace.edge2[0]][eFace.edge2[3]];
+				cube[eFace.edge3[0]][eFace.edge3[1]] = copy[eFace.edge4[0]][eFace.edge4[1]];
+				cube[eFace.edge3[0]][eFace.edge3[2]] = copy[eFace.edge4[0]][eFace.edge4[2]];
+				cube[eFace.edge3[0]][eFace.edge3[3]] = copy[eFace.edge4[0]][eFace.edge4[3]];
 
 				// Edge 4
-				cube[eFace.edge4[0]][eFace.edge4[1]] = copy[eFace.edge3[0]][eFace.edge3[1]];
-				cube[eFace.edge4[0]][eFace.edge4[2]] = copy[eFace.edge3[0]][eFace.edge3[2]];
-				cube[eFace.edge4[0]][eFace.edge4[3]] = copy[eFace.edge3[0]][eFace.edge3[3]];
+				cube[eFace.edge4[0]][eFace.edge4[1]] = copy[eFace.edge1[0]][eFace.edge1[1]];
+				cube[eFace.edge4[0]][eFace.edge4[2]] = copy[eFace.edge1[0]][eFace.edge1[2]];
+				cube[eFace.edge4[0]][eFace.edge4[3]] = copy[eFace.edge1[0]][eFace.edge1[3]];
 			}
 			// counter-clockwise
 			case "cc" -> {
@@ -282,6 +282,8 @@ public class Cube {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		Cube RubiksCube = new Cube();
 
+		ArrayList<String> possibleCubeCommands = new ArrayList<String>(
+				Arrays.asList("u", "u'", "d", "d'", "l", "l'", "r", "r'", "f", "f'", "b", "b'"));
 		ArrayList<String> userCommands = new ArrayList<String>();
 
 		boolean argsCheck = args.length > 0;
@@ -289,6 +291,8 @@ public class Cube {
 
 		boolean proceed = true;
 
+		System.out.println("Welcome to the Rubik's Cube Simulator!");
+		System.out.println("Enter a command to begin. Type 's' to solve the cube and 'q' to quiz.");
 		while(proceed)
 		{
 			String input;
@@ -297,7 +301,7 @@ public class Cube {
 			{
 				System.out.println("Enter a command: ");
 				input = reader.readLine();
-				if (!input.equals("s"))
+				if (possibleCubeCommands.contains(input))
 				{
 					userCommands.add(input);
 				}
@@ -314,42 +318,57 @@ public class Cube {
 
 			switch(input){
 				case "u":
-					RubiksCube.turnFace(4, "c");
+					RubiksCube.turnFace(5, "c");
 					RubiksCube.showCube();
 					break;
 				case "d":
+					RubiksCube.turnFace(4, "c");
+					RubiksCube.showCube();
 					break;
 				case "r":
 					RubiksCube.turnFace(0, "c");
 					RubiksCube.showCube();
 					break;
 				case "l":
+					RubiksCube.turnFace(2, "c");
+					RubiksCube.showCube();
 					break;
 				case "f":
+					RubiksCube.turnFace(3, "c");
+					RubiksCube.showCube();
 					break;
 				case "b":
+					RubiksCube.turnFace(1, "c");
 					break;
 				case "u'":
-					RubiksCube.turnFace(4, "cc");
+					RubiksCube.turnFace(5, "cc");
 					RubiksCube.showCube();
 					break;
 				case "d'":
+					RubiksCube.turnFace(4, "cc");
 					break;
 				case "r'":
 					RubiksCube.turnFace(0, "cc");
 					RubiksCube.showCube();
 					break;
 				case "l'":
+					RubiksCube.turnFace(2, "cc");
+					RubiksCube.showCube();
 					break;
 				case "f'":
+					RubiksCube.turnFace(3, "cc");
+					RubiksCube.showCube();
 					break;
 				case "b'":
+					RubiksCube.turnFace(1, "cc");
+					RubiksCube.showCube();
 					break;
 				case "s":
-					System.out.println(userCommands.toString());
-					System.exit(0);
+					Collections.reverse(userCommands);
+					System.out.printf("Commands to solve: %s%n", userCommands.toString());
 					break;
 				case "q":
+					System.out.println("Bye!");
 					System.exit(0);
 					break;
 			}
